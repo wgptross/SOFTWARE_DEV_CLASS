@@ -1,60 +1,15 @@
 import java.util.Scanner;
 class module_6{
 
-    public static void errorReturn(String errorMessage){
-        System.out.println("\nERROR: " + errorMessage);
-    }
-
-    public static void list(String[][] names){
-        printTitle("Notes", false);
-        int counter = 0;
-        for(int i = 0; i < names.length; i++ ){
-            if(names[i][0] == null){
-                counter++;
-            }
-        }
-        if(counter == 119){
-            System.out.print("you have at least one note");
-        } else {
-            System.out.print("You have no notes");
-            mainMenu(false, names);
-        }
-        for(int j = 0; j < counter; j++){
-            if(names[counter - j][0] != null){
-                System.out.println(names[counter -j][0]);
-            }
-        }
-    }
+    
     
     public static void create(String[][] names){
         Scanner input = new Scanner(System.in);
         String value;
         int counter = 0;
         System.out.print("Enter the name of the new task: ");
-        
         value = input.nextLine();
-
-        if(value.charAt(0) == '.'){
-            errorReturn("Invalid name");
-            mainMenu(false, names);
-        }
-        int emptyCount = 0;
-
-        for(int i = 0; i < value.length(); i++){
-            if(value.charAt(i) == ' '){
-                emptyCount++;
-            }
-        }
-        //System.out.println(value.charAt(emptyCount));
-        if(emptyCount > 0){
-            errorReturn("Invalid name");
-            mainMenu(false, names);
-        }
         
-
-
-
-
         for(int i = 0; i < names.length; i++){
             if(names[i][0] == null){
                 
@@ -100,8 +55,7 @@ class module_6{
                 }
 
                 if(i > 8){
-                    System.out.print("-------------------------------------------\n");
-                    System.out.print("closing note... \n\n");
+                    
                     cont = false;
                 }
                 
@@ -131,8 +85,6 @@ class module_6{
         //System.out.print("\n\n" + names[counter - 1][1] + " (names array)");
         
 
-        System.out.println(names[counter - 1][0]);
-        System.out.println(names[counter - 1][1]);
 
         //System.out.println(names[counter - 1][1]);
         //int mutCounter = (counter -= counter);
@@ -147,7 +99,6 @@ class module_6{
                 create(names);
                 break;
             case 1:
-                list(names);
                 break;
             case 2:
                 break;
