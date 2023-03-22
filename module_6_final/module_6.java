@@ -8,22 +8,34 @@ class module_6{
     public static void list(String[][] names){
         printTitle("Notes", false);
         int counter = 0;
+        int notNull = 0;
         for(int i = 0; i < names.length; i++ ){
             if(names[i][0] == null){
                 counter++;
             }
-        }
-        if(counter == 119){
-            System.out.print("you have at least one note");
-        } else {
-            System.out.print("You have no notes");
-            mainMenu(false, names);
-        }
-        for(int j = 0; j < counter; j++){
-            if(names[counter - j][0] != null){
-                System.out.println(names[counter -j][0]);
+            if(names[i][0] != null){
+                notNull++;
             }
         }
+        if(counter <= names.length - 1){
+            if(notNull == 1){
+                
+                System.out.println("(You have " + notNull + " task)");
+
+            } else {
+                System.out.println("t"+"\u2200");
+                System.out.println("(You have " + notNull + " tasks)");
+            }
+        } else {
+            errorReturn("You have no tasks");
+            mainMenu(false, names);
+        }
+        
+        for(int k = 0; k < notNull; k++){
+            int newCount = counter - 1;
+            System.out.println(names[k + counter][0] + " | " + k);
+        }
+        
     }
     
     public static void create(String[][] names){
@@ -65,6 +77,8 @@ class module_6{
         System.out.println(counter);
         System.out.println(names.length + " (names length)");
         names[counter - 1][0] = value;
+        int counterPrint = counter - 1;
+        System.out.println(value + " has been set as counter " + counterPrint);
 
         printTitle("Text Editor", false);
         System.out.print("\n-------------------------------------------\n");
@@ -147,9 +161,9 @@ class module_6{
                 create(names);
                 break;
             case 1:
-                list(names);
                 break;
             case 2:
+                list(names);
                 break;
             case 3:
                 break;
