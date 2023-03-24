@@ -23,7 +23,7 @@ class module_6{
                 System.out.println("(You have " + notNull + " task)");
 
             } else {
-                
+                System.out.println("t"+"\u2200");
                 System.out.println("(You have " + notNull + " tasks)");
             }
         } else {
@@ -33,43 +33,18 @@ class module_6{
         
         for(int k = 0; k < notNull; k++){
             int newCount = counter - 1;
-            int space = 15;
-            System.out.print("| ");
-            System.out.print(names[k + counter][0]);
-            printSpace(space - names[k + counter][0].length());
-            
+            System.out.println(names[k + counter][0] + " | " + k);
         }
         
-    }
-
-    public static void printSpace(int count){
-        for(int i = 0; i < count; i++){
-            System.out.print(" ");
-        }
-        System.out.print(" |\n");
     }
     
     public static void create(String[][] names){
         Scanner input = new Scanner(System.in);
         String value;
         int counter = 0;
-        int newCount = 0;
         System.out.print("Enter the name of the new task: ");
         
         value = input.nextLine();
-
-        for(int k = 0; k < names.length; k++){
-            if(names[k][0] != null){
-                newCount++;
-            }
-        }
-        
-        System.out.println(newCount + " newcount");
-
-        if(value.length() >= 16){
-            errorReturn("Name is too long");
-            mainMenu(false, names);
-        }
 
         if(value.charAt(0) == '.'){
             errorReturn("Invalid name");
@@ -101,18 +76,6 @@ class module_6{
         }
         System.out.println(counter);
         System.out.println(names.length + " (names length)");
-        
-        if(newCount >= 1){
-            int altCount = 0;
-            for(int l = 0; l < names.length; l++){
-                if(names[l][0] == value){
-                    System.out.print("value taken");
-                    altCount++;
-                }
-            }
-            System.out.println(altCount + " (alt count)");
-        }
-
         names[counter - 1][0] = value;
         int counterPrint = counter - 1;
         System.out.println(value + " has been set as counter " + counterPrint);
@@ -219,10 +182,8 @@ class module_6{
         System.out.println("[3]> delete task");
 
         System.out.print("\n#: ");
+
         value = input.nextInt();
-
-      
-
         execute(value, names);
         mainMenu(false, names);
         
