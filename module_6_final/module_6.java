@@ -57,6 +57,7 @@ class module_6{
         System.out.print("Enter the name of the new task: ");
         
         value = input.nextLine();
+       
 
         for(int k = 0; k < names.length; k++){
             if(names[k][0] != null){
@@ -64,7 +65,6 @@ class module_6{
             }
         }
         
-        System.out.println(newCount + " newcount");
 
         if(value.length() >= 16){
             errorReturn("Name is too long");
@@ -99,19 +99,7 @@ class module_6{
             }
             
         }
-        System.out.println(counter);
-        System.out.println(names.length + " (names length)");
         
-        if(newCount >= 1){
-            int altCount = 0;
-            for(int l = 0; l < names.length; l++){
-                if(names[l][0] == value){
-                    System.out.print("value taken");
-                    altCount++;
-                }
-            }
-            System.out.println(altCount + " (alt count)");
-        }
 
         names[counter - 1][0] = value;
         int counterPrint = counter - 1;
