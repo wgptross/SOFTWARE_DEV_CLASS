@@ -33,8 +33,9 @@ class module_6{
         
         for(int k = 0; k < notNull; k++){
             int newCount = counter - 1;
-            int space = 15;
-            System.out.print("| ");
+            int space = 10;
+            System.out.print(k + 1);
+            System.out.print(" | Title: ");
             System.out.print(names[k + counter][0]);
             printSpace(space - names[k + counter][0].length());
             
@@ -103,7 +104,7 @@ class module_6{
 
         names[counter - 1][0] = value;
         int counterPrint = counter - 1;
-        System.out.println(value + " has been set as counter " + counterPrint);
+        //System.out.println(value + " has been set as counter " + counterPrint);
 
         printTitle("Text Editor", false);
         System.out.print("\n-------------------------------------------\n");
@@ -180,12 +181,73 @@ class module_6{
         
     }
 
+    public static void edit(String[][] names){
+        Scanner input = new Scanner(System.in);
+        int counter = 0;
+        int notNull = 0;
+        String value;
+        for(int i = 0; i < names.length; i++){
+            if(names[i][0] != null){
+                notNull++;
+            }
+            if(names[i][0] == null){
+                counter++;
+            }
+        }
+        if(notNull <= 0){
+            errorReturn("You have no tasks");
+        }
+        for(int k = 0; k < notNull; k++){
+            int newCount = counter - 1;
+            int space = 10;
+            System.out.print(k + 1);
+            System.out.print(" | Title: ");
+            System.out.print(names[k + counter][0]);
+            printSpace(space - names[k + counter][0].length());
+            
+        }
+        System.out.print("Enter the name of the task you would like to edit: ");
+        value = input.nextLine();
+
+        int validCount = 0;
+        int invalidCount = 0;
+
+        for(int j = 0; j < notNull; j++){
+            String compare = names[counter - j][0];
+            
+            if(value.length() == compare.length()){
+                
+                for(int l = 0; l < compare.length(); l++){
+                    if(compare.charAt(l) == value.charAt(l)){
+                        
+                        validCount++;
+                    } else {
+                        
+                        invalidCount++;
+                    }
+                }
+                //System.out.print(validCount);
+                //System.out.print(invalidCount);
+                if(validCount >= compare.length()){
+                    System.out.print(j);
+                    System.out.print("this name is valid and can be edited");
+                } else {
+                    errorReturn("This name does not exist");
+                }
+            } else {
+                errorReturn("This name does not exist");
+            }
+        }
+
+    }
+
     public static void execute(int number, String[][] names){
         switch (number){
             case 0:
                 create(names);
                 break;
             case 1:
+                edit(names);
                 break;
             case 2:
                 list(names);
