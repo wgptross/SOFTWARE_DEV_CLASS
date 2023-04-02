@@ -49,6 +49,35 @@ class module_6{
         }
         System.out.print(" |\n");
     }
+
+    public static boolean checkLength(String[][] names, String name, int counter){
+        System.out.println(counter);
+
+        int notNull = 0;
+        for(int i = 0; i < names.length; i++){
+            if(names[i][0] != null){
+                notNull++;
+            }
+        }
+        for(int j = 0; j < notNull; j++){
+            int newCount = counter - 1;
+            System.out.println(j);
+            System.out.println("TEST " + names[newCount - j][0]);
+            if(name == names[newCount - j][0]){
+                System.out.print("NAME FOUND");
+            }
+        }
+        System.out.println("NOT NULL " + notNull);
+        
+        System.out.println("counter " + names[counter - 1][0]);
+        if(names[counter -1][0].length() == name.length()){
+            System.out.println("TRUE");
+            return true;
+        } else {
+            System.out.println("FALSE");
+            return false;
+        }
+    }
     
     public static void create(String[][] names){
         Scanner input = new Scanner(System.in);
@@ -104,8 +133,8 @@ class module_6{
 
         names[counter - 1][0] = value;
         int counterPrint = counter - 1;
-        //System.out.println(value + " has been set as counter " + counterPrint);
-
+        System.out.println(value + " has been set as counter " + counterPrint);
+        checkLength(names, "the", counter);
         printTitle("Text Editor", false);
         System.out.print("\n-------------------------------------------\n");
         System.out.print("You have 9 lines for notes use '|' to stop \n");
@@ -121,7 +150,7 @@ class module_6{
             
             
             for(int i = 0; i < lineReader.length; i++){
-
+                boolean printAgain = true;
                 System.out.print(i + "| ~ ");
                 //System.out.println("id" + i);
                 
@@ -133,13 +162,15 @@ class module_6{
                 if(lineReader[i].length() >= 1){
                     char end = '|';
                     if(lineReader[i].charAt(length - 1) == end){
+                        printAgain = false;
                         System.out.print("-------------------------------------------\n");
                         System.out.print("closing note... \n\n");
                         i = 9;
+                        cont = false;
                     }
                 }
 
-                if(i > 8){
+                if(i > 8 && printAgain == true){
                     System.out.print("-------------------------------------------\n");
                     System.out.print("closing note... \n\n");
                     cont = false;
@@ -171,7 +202,7 @@ class module_6{
         //System.out.print("\n\n" + names[counter - 1][1] + " (names array)");
         
 
-        System.out.println(names[counter - 1][0]);
+        //System.out.println(names[counter - 1][0]);
         System.out.println(names[counter - 1][1]);
 
         //System.out.println(names[counter - 1][1]);
