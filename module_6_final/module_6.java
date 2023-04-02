@@ -59,12 +59,30 @@ class module_6{
                 notNull++;
             }
         }
+        int totalFound = 0;
+        int validCount = 0;
+        int invalidCount = 0;
         for(int j = 0; j < notNull; j++){
             int newCount = counter - 1;
             System.out.println(j);
             System.out.println("TEST " + names[newCount - j][0]);
-            if(name == names[newCount - j][0]){
-                System.out.print("NAME FOUND");
+            String compare = names[newCount - j][0];
+
+            for(int l = 0; l < compare.length(); l++){
+                if(compare.charAt(l) == name.charAt(l)){
+                    validCount++;
+                } else {
+                    invalidCount++;
+                }
+            }
+            System.out.println(compare.length());
+            System.out.println(validCount);
+            System.out.println(invalidCount);
+
+            if(validCount >= compare.length()){
+                System.out.print("nameFound");
+                totalFound++;
+                System.out.print(totalFound);
             }
         }
         System.out.println("NOT NULL " + notNull);
