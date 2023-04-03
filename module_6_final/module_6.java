@@ -51,50 +51,30 @@ class module_6{
     }
 
     public static boolean checkLength(String[][] names, String name, int counter){
-        System.out.println(counter);
-
-        int notNull = 0;
-        for(int i = 0; i < names.length; i++){
-            if(names[i][0] != null){
-                notNull++;
-            }
-        }
         int totalFound = 0;
-        int validCount = 0;
-        int invalidCount = 0;
-        for(int j = 0; j < notNull; j++){
-            int newCount = counter - 1;
-            System.out.println(j);
-            System.out.println("TEST " + names[newCount - j][0]);
-            String compare = names[newCount - j][0];
+        int totalPossible = 0;
 
-            for(int l = 0; l < compare.length(); l++){
-                if(compare.charAt(l) == name.charAt(l)){
-                    validCount++;
-                } else {
-                    invalidCount++;
-                }
+        int notNullCount = 0;
+        for(int i = 0; i < names.length; i++){
+            names[99][0] = "the";
+            if(names[i][0] != null){
+                System.out.println("data found");
+                notNullCount++;
+            } else {
+                System.out.println("no data found");
             }
-            System.out.println(compare.length());
-            System.out.println(validCount);
-            System.out.println(invalidCount);
-
-            if(validCount >= compare.length()){
-                System.out.print("nameFound");
-                totalFound++;
-                System.out.print(totalFound);
-            }
+            System.out.println(notNullCount);
         }
-        System.out.println("NOT NULL " + notNull);
-        
-        System.out.println("counter " + names[counter - 1][0]);
-        if(names[counter -1][0].length() == name.length()){
-            System.out.println("TRUE");
-            return true;
-        } else {
-            System.out.println("FALSE");
+        System.out.println("NULL COUNT " + notNullCount);
+        if(notNullCount < 1){
             return false;
+        } else {
+            for(int j = 0; j < notNullCount; j++){
+                System.out.println("counter " + counter);
+                System.out.println(names[counter - j][0]);
+            }
         }
+        return true;
     }
     
     public static void create(String[][] names){
@@ -149,10 +129,10 @@ class module_6{
         }
         
 
-        names[counter - 1][0] = value;
+        //names[counter - 1][0] = value;
         int counterPrint = counter - 1;
         System.out.println(value + " has been set as counter " + counterPrint);
-        checkLength(names, "the", counter);
+        checkLength(names, names[counter - 1][0], counter - 1);
         printTitle("Text Editor", false);
         System.out.print("\n-------------------------------------------\n");
         System.out.print("You have 9 lines for notes use '|' to stop \n");
@@ -221,7 +201,7 @@ class module_6{
         
 
         //System.out.println(names[counter - 1][0]);
-        System.out.println(names[counter - 1][1]);
+        //System.out.println(names[counter - 1][1]);
 
         //System.out.println(names[counter - 1][1]);
         //int mutCounter = (counter -= counter);
