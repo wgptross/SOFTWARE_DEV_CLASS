@@ -50,31 +50,46 @@ class module_6{
         System.out.print(" |\n");
     }
 
-    public static boolean checkLength(String[][] names, String name, int counter){
-        int totalFound = 0;
-        int totalPossible = 0;
-
-        int notNullCount = 0;
-        for(int i = 0; i < names.length; i++){
-            names[99][0] = "the";
-            if(names[i][0] != null){
-                System.out.println("data found");
-                notNullCount++;
+    public static boolean checkForTitle(String[][] names, String search){
+        String[] possible = new String[names.length];
+        String[] starters = new String[names.length];
+        int notNull = 0;
+        int counter = 0;
+        for(int y = 0; y < names.length; y++){
+            if(names[y][0] == null){
+                counter++;
             } else {
-                System.out.println("no data found");
+                notNull++;
             }
-            System.out.println(notNullCount);
         }
-        System.out.println("NULL COUNT " + notNullCount);
-        if(notNullCount < 1){
+        System.out.println(notNull + " not null count");
+        if(notNull >= 1){
+            for(int i = 0; i < notNull; i++){
+                System.out.println(names[i + counter][0]);
+                starters[i] = counter + "";
+            }
+        } else {
+            System.out.print("CUSTOM TRUE 9");
+            return true;
+        }
+        
+        for(String j : starters){
+            System.out.print(j);
+        }
+        int startersCount = 0;
+        for(int l = 0; l < starters.length; l++){
+            if(starters[l] != null){
+                startersCount++;
+            }
+        }
+        System.out.println(startersCount + " starters count");
+        if(startersCount >= 1){
+            System.out.println("starter is above");
             return false;
         } else {
-            for(int j = 0; j < notNullCount; j++){
-                System.out.println("counter " + counter);
-                System.out.println(names[counter - j][0]);
-            }
+            System.out.println("CUSTOM TRUE 8");
+            return true;
         }
-        return true;
     }
     
     public static void create(String[][] names){
@@ -131,8 +146,19 @@ class module_6{
 
         //names[counter - 1][0] = value;
         int counterPrint = counter - 1;
-        System.out.println(value + " has been set as counter " + counterPrint);
-        checkLength(names, names[counter - 1][0], counter - 1);
+
+        if(checkForTitle(names, counterPrint + "") == true){
+            System.out.println("no duplicates found all clear");
+            names[counter - 1][0] = value;
+        } else {
+            System.out.println("name is in use");
+            errorReturn("name is already in use");
+            mainMenu(false, names);
+
+        }
+        //System.out.println(value + " has been set as counter " + counterPrint);
+        //checkForTitle(names, counterPrint + "");
+        
         printTitle("Text Editor", false);
         System.out.print("\n-------------------------------------------\n");
         System.out.print("You have 9 lines for notes use '|' to stop \n");
