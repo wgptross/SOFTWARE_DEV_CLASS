@@ -55,6 +55,9 @@ class module_6{
         String[] starters = new String[names.length];
         int notNull = 0;
         int counter = 0;
+        int matchCount = 0;
+        int noMatchCount = 0;
+        boolean found;
         for(int y = 0; y < names.length; y++){
             if(names[y][0] == null){
                 counter++;
@@ -65,16 +68,43 @@ class module_6{
         System.out.println(notNull + " not null count");
         if(notNull >= 1){
             for(int i = 0; i < notNull; i++){
-                System.out.println(names[i + counter][0]);
-                starters[i] = counter + "";
+                if(names[i + counter][0].charAt(0) == search.charAt(0)){
+                    starters[i] = names[i + counter][0];
+                    for(String y : starters){
+                        if(y != null){
+                            for(String k : starters){
+                                if(k != null){
+
+                                
+                                    for(int u = 0; u < k.length(); u++){
+                                        if(k.charAt(u) == search.charAt(u)){
+                                            matchCount++;
+                                        } else {
+                                            noMatchCount++;
+                                        }
+                                    
+                                    }
+                                }
+                                System.out.println(matchCount + " Match Count");
+                                System.out.println(noMatchCount + " No Match Count");
+
+                        }
+                    }
+                } 
+               
+                
             }
+        }
         } else {
             System.out.print("CUSTOM TRUE 9");
             return true;
         }
         
+        
         for(String j : starters){
-            System.out.print(j);
+            if(j != null){
+                System.out.println(j + " (counter) ");
+            }
         }
         int startersCount = 0;
         for(int l = 0; l < starters.length; l++){
@@ -82,14 +112,14 @@ class module_6{
                 startersCount++;
             }
         }
-        System.out.println(startersCount + " starters count");
-        if(startersCount >= 1){
-            System.out.println("starter is above");
-            return false;
-        } else {
-            System.out.println("CUSTOM TRUE 8");
+        if(noMatchCount < search.length()){
+            System.out.println("CUSTOM TRUE RETURN ID 2");
             return true;
+        } else {
+            System.out.println("CUSTOM FALSE ID 1");
+            return false;
         }
+        
     }
     
     public static void create(String[][] names){
@@ -147,7 +177,7 @@ class module_6{
         //names[counter - 1][0] = value;
         int counterPrint = counter - 1;
 
-        if(checkForTitle(names, counterPrint + "") == true){
+        if(checkForTitle(names, value) == true){
             System.out.println("no duplicates found all clear");
             names[counter - 1][0] = value;
         } else {
