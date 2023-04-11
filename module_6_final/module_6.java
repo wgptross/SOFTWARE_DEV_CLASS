@@ -51,76 +51,21 @@ class module_6{
     }
 
     public static boolean checkForTitle(String[][] names, String search){
-        String[] possible = new String[names.length];
-        String[] starters = new String[names.length];
-        int notNull = 0;
-        int counter = 0;
-        int matchCount = 0;
-        int noMatchCount = 0;
-        boolean found;
-        for(int y = 0; y < names.length; y++){
-            if(names[y][0] == null){
-                counter++;
-            } else {
-                notNull++;
-            }
-        }
-        System.out.println(notNull + " not null count");
-        if(notNull >= 1){
-            for(int i = 0; i < notNull; i++){
-                if(names[i + counter][0].charAt(0) == search.charAt(0)){
-                    starters[i] = names[i + counter][0];
-                    for(String y : starters){
-                        if(y != null){
-                            for(String k : starters){
-                                if(k != null){
-
-                                
-                                    for(int u = 0; u < k.length(); u++){
-                                        if(k.charAt(u) == search.charAt(u)){
-                                            matchCount++;
-                                        } else {
-                                            noMatchCount++;
-                                        }
-                                    
-                                    }
-                                }
-                                System.out.println(matchCount + " Match Count");
-                                System.out.println(noMatchCount + " No Match Count");
-
-                        }
-                    }
-                } 
-               
+        String[][] compare = {{"check"}, {search}};
+        System.out.println(compare[1][0]);
+        for(int i = 0; i < names.length; i++){
+            if(names[i][0] == compare[1][0]){
                 
+                return true;
+            } else { 
+
+                return false;
             }
         }
-        } else {
-            System.out.print("CUSTOM TRUE 9");
-            return true;
-        }
-        
-        
-        for(String j : starters){
-            if(j != null){
-                System.out.println(j + " (counter) ");
-            }
-        }
-        int startersCount = 0;
-        for(int l = 0; l < starters.length; l++){
-            if(starters[l] != null){
-                startersCount++;
-            }
-        }
-        if(noMatchCount < search.length()){
-            System.out.println("CUSTOM TRUE RETURN ID 2");
-            return true;
-        } else {
-            System.out.println("CUSTOM FALSE ID 1");
-            return false;
-        }
+        return true;
         
     }
+        
     
     public static void create(String[][] names){
         Scanner input = new Scanner(System.in);
@@ -175,17 +120,9 @@ class module_6{
         
 
         //names[counter - 1][0] = value;
-        int counterPrint = counter - 1;
-
-        if(checkForTitle(names, value) == true){
-            System.out.println("no duplicates found all clear");
-            names[counter - 1][0] = value;
-        } else {
-            System.out.println("name is in use");
-            errorReturn("name is already in use");
-            mainMenu(false, names);
-
-        }
+        
+       
+        
         //System.out.println(value + " has been set as counter " + counterPrint);
         //checkForTitle(names, counterPrint + "");
         
