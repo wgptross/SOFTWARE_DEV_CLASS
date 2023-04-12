@@ -50,40 +50,49 @@ class module_6{
         System.out.print(" |\n");
     }
 
-    public static void checkForTitle(String[][] names, String search){
-        String[][] possible = new String[names.length][1];
+    public static boolean checkForTitle(String[][] names, String search){
         int counter = 0;
-        int possCount = 0; 
+        int possibleCounter = 0;
         int notNull = 0;
+        String possible[] = new String[names.length];
         for(int i = 0; i < names.length; i++){
             if(names[i][0] == null){
                 counter++;
-                System.out.println("Null");
             } else {
                 notNull++;
             }
 
         }
-        for(int y = 0; y < possible.length; y++){
-            if(possible[y] == null){
-                possCount++;
-                System.out.println("Null poss");
+        for(int i = 0; i < possible.length; i++){
+            if(possible[i] == null){
+                possibleCounter++;
             }
         }
-        for(int j = 0; j < counter; j++){
-            if(notNull >= 1){
-                //System.out.println(j);
-                if(names[counter][0].charAt(0) == search.charAt(0)){
-                    System.out.println("char found");
-                    possible[possCount][0] = names[j][0];
-                    System.out.println(possible[possCount - 1][0] + "possible");
+        System.out.println(names.length + " names length");
+        System.out.println(counter + " counter length");
+        System.out.println(possibleCounter + " poss counter");
+        System.out.println(notNull + " not null");
+        if(counter == names.length){
+            System.out.println("return true 0");
+            return true;
+        } else {
+            System.out.println("return false 0");
+            //loop through all of names find possible names and putting them in the possible array
+            for(int i = 0; i < names.length; i++){
+                if(names[i][0] != null){
+                    if(names[i][0].charAt(0) == search.charAt(0)){
+                        System.out.println("charat found");
+                        possible[possibleCounter - 1] = names[i][0];
+                    }
+                }
+            }
+            for(String j: possible){
+                if(j != null){
+                    System.out.println(j + " poss array");
                 }
             }
         }
-        for(int i = 0; i < possible.length; i++){
-            System.out.println(possible[i + 1][0] + " poss");
-        }
-        
+        return true;
     }
         
     
@@ -140,8 +149,13 @@ class module_6{
         
 
         //names[counter - 1][0] = value;
-        names[counter - 1][0] = value;
-        checkForTitle(names, value);
+
+        //System.out.println(checkForTitle(names, value));
+        if(checkForTitle(names, value)){
+            System.out.println(counter - 1 + " set here");
+            names[counter - 1][0] = value;
+        }
+        
        
         
         //System.out.println(value + " has been set as counter " + counterPrint);
