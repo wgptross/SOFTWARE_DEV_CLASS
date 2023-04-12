@@ -50,19 +50,39 @@ class module_6{
         System.out.print(" |\n");
     }
 
-    public static boolean checkForTitle(String[][] names, String search){
-        String[][] compare = {{"check"}, {search}};
-        System.out.println(compare[1][0]);
+    public static void checkForTitle(String[][] names, String search){
+        String[][] possible = new String[names.length][1];
+        int counter = 0;
+        int possCount = 0; 
+        int notNull = 0;
         for(int i = 0; i < names.length; i++){
-            if(names[i][0] == compare[1][0]){
-                
-                return true;
-            } else { 
+            if(names[i][0] == null){
+                counter++;
+                System.out.println("Null");
+            } else {
+                notNull++;
+            }
 
-                return false;
+        }
+        for(int y = 0; y < possible.length; y++){
+            if(possible[y] == null){
+                possCount++;
+                System.out.println("Null poss");
             }
         }
-        return true;
+        for(int j = 0; j < counter; j++){
+            if(notNull >= 1){
+                //System.out.println(j);
+                if(names[counter][0].charAt(0) == search.charAt(0)){
+                    System.out.println("char found");
+                    possible[possCount][0] = names[j][0];
+                    System.out.println(possible[possCount - 1][0] + "possible");
+                }
+            }
+        }
+        for(int i = 0; i < possible.length; i++){
+            System.out.println(possible[i + 1][0] + " poss");
+        }
         
     }
         
@@ -120,7 +140,8 @@ class module_6{
         
 
         //names[counter - 1][0] = value;
-        
+        names[counter - 1][0] = value;
+        checkForTitle(names, value);
        
         
         //System.out.println(value + " has been set as counter " + counterPrint);
