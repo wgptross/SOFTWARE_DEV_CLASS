@@ -76,13 +76,40 @@ class module_6{
             System.out.println("return true 0");
             return true;
         } else {
+            int noLength = 0;
             System.out.println("return false 0");
             //loop through all of names find possible names and putting them in the possible array
             for(int i = 0; i < names.length; i++){
                 if(names[i][0] != null){
                     if(names[i][0].charAt(0) == search.charAt(0)){
                         System.out.println("charat found");
+                        int match = 0;
+                        int noMatch = 0;
+                        boolean cont = true;
                         possible[possibleCounter - 1] = names[i][0];
+                        while(cont){
+                            for(int j = 0; j < names.length; j++){
+                                if(names[j][0] != null){
+                                    for(int y = 0; y < search.length(); y++){
+                                        if(names[j][0].charAt(y) == search.charAt(y)){
+                                            match++;
+
+                                            System.out.println(match + " match found");
+                                            cont = false;
+                                        } else {
+                                            noMatch++;
+                                            System.out.println(noMatch + " no match found");
+                                            cont = false;
+                                        }
+                                    }
+                                }
+                            }
+                            if(match >= search.length()){
+                                System.out.println("match exists");
+                                errorReturn("name is already taken");
+                                mainMenu(true, names);
+                            }
+                        }
                     }
                 }
             }
