@@ -68,21 +68,21 @@ class module_6{
                 possibleCounter++;
             }
         }
-        System.out.println(names.length + " names length");
-        System.out.println(counter + " counter length");
-        System.out.println(possibleCounter + " poss counter");
-        System.out.println(notNull + " not null");
+        //System.out.println(names.length + " names length");
+        //System.out.println(counter + " counter length");
+        //System.out.println(possibleCounter + " poss counter");
+        //System.out.println(notNull + " not null");
         if(counter == names.length){
-            System.out.println("return true 0");
+            //System.out.println("return true 0");
             return true;
         } else {
             int noLength = 0;
-            System.out.println("return false 0");
+            //System.out.println("return false 0");
             //loop through all of names find possible names and putting them in the possible array
             for(int i = 0; i < names.length; i++){
                 if(names[i][0] != null){
                     if(names[i][0].charAt(0) == search.charAt(0)){
-                        System.out.println("charat found");
+                        //System.out.println("charat found");
                         int match = 0;
                         int noMatch = 0;
                         boolean cont = true;
@@ -94,18 +94,18 @@ class module_6{
                                         if(names[j][0].charAt(y) == search.charAt(y)){
                                             match++;
 
-                                            System.out.println(match + " match found");
+                                            //System.out.println(match + " match found");
                                             cont = false;
                                         } else {
                                             noMatch++;
-                                            System.out.println(noMatch + " no match found");
+                                            //System.out.println(noMatch + " no match found");
                                             cont = false;
                                         }
                                     }
                                 }
                             }
                             if(match >= search.length()){
-                                System.out.println("match exists");
+                                //System.out.println("match exists");
                                 errorReturn("name is already taken");
                                 mainMenu(true, names);
                             }
@@ -125,14 +125,16 @@ class module_6{
     
     public static void create(String[][] names){
         Scanner input = new Scanner(System.in);
-        String value;
+        String value = null;
         int counter = 0;
         int newCount = 0;
         System.out.print("Enter the name of the new task: ");
         
         value = input.nextLine();
-       
-
+        if(value == ""){
+            errorReturn("Invalid name");
+            mainMenu(false, names);
+        }
         for(int k = 0; k < names.length; k++){
             if(names[k][0] != null){
                 newCount++;
@@ -179,7 +181,7 @@ class module_6{
 
         //System.out.println(checkForTitle(names, value));
         if(checkForTitle(names, value)){
-            System.out.println(counter - 1 + " set here");
+            //System.out.println(counter - 1 + " set here");
             names[counter - 1][0] = value;
         }
         
@@ -313,8 +315,9 @@ class module_6{
                 //System.out.print(validCount);
                 //System.out.print(invalidCount);
                 if(validCount >= compare.length()){
-                    System.out.print(j);
+                    System.out.print(j + counter);
                     System.out.print("this name is valid and can be edited");
+                    editId(j + counter, names);
                 } else {
                     errorReturn("This name does not exist");
                 }
@@ -324,7 +327,10 @@ class module_6{
         }
 
     }
-
+    public static void editId(int editid, String[][] names){
+        System.out.println(names[editid][0]);
+        //System.out.println(names[editid][1]);
+    }
     public static void execute(int number, String[][] names){
         switch (number){
             case 0:
@@ -394,6 +400,10 @@ class module_6{
         System.out.print("Please enter a number here: ");
         
         listCount = input.nextInt();
+        if(listCount == 0 || listCount < 1){
+            errorReturn("you must have more than 1 task!");
+            System.exit(0);
+        }
         String[][] table = new String[listCount][4];
         return table;
 
