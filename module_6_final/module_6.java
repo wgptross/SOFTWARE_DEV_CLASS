@@ -31,16 +31,39 @@ class module_6{
             mainMenu(false, names);
         }
         
+        String[] priorityArray = new String[names.length];
+        System.out.println(priorityArray.length);
+        int notNullPriority = 0;
+        int priorityCounter = 0;
+        for(int t = 0; t < names.length; t++){
+            if(priorityArray[t] == null){
+                System.out.println("prio added ");
+                priorityCounter++;
+            }
+        }
+        for(int u = 0; u < names.length; u++){
+            
+            if(names[u][2] != null){
+                priorityArray[counter] = u + " test";
+                System.out.println(priorityCounter + " priority counter");
+            }
+        }
+        for(String e: priorityArray){
+            System.out.println(e);
+        }
+
         for(int k = 0; k < notNull; k++){
+            
+
             int newCount = counter - 1;
             int space = 10;
-            System.out.print(k + 1);
-            System.out.print(" | Title: ");
-            System.out.print(names[k + counter][0]);
-            printSpace(space - names[k + counter][0].length());
-            System.out.print(" Priority: ");
-            System.out.print(names[k + counter][2] + " | ");
-            System.out.print("\n");
+            //System.out.print(k + 1);
+            //System.out.print(" | Title: ");
+            //System.out.print(names[k + counter][0]);
+            //printSpace(space - names[k + counter][0].length());
+            //System.out.print(" Priority: ");
+            //System.out.print(names[k + counter][2] + " | ");
+            //System.out.print("\n");
             
         }
         
@@ -111,8 +134,8 @@ class module_6{
                                 }
                             }
                             if(match >= search.length()){
-                                System.out.println(match + " match count");
-                                System.out.println(noMatch + " noMatch count");
+                                //System.out.println(match + " match count");
+                                //System.out.println(noMatch + " noMatch count");
                                 //System.out.println("match exists");
                                 errorReturn("name is already taken");
                                 mainMenu(true, names);
