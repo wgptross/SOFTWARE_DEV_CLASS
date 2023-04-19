@@ -38,6 +38,9 @@ class module_6{
             System.out.print(" | Title: ");
             System.out.print(names[k + counter][0]);
             printSpace(space - names[k + counter][0].length());
+            System.out.print(" Priority: ");
+            System.out.print(names[k + counter][2] + " | ");
+            System.out.print("\n");
             
         }
         
@@ -47,7 +50,7 @@ class module_6{
         for(int i = 0; i < count; i++){
             System.out.print(" ");
         }
-        System.out.print(" |\n");
+        System.out.print(" | ");
     }
 
     public static boolean checkForTitle(String[][] names, String search){
@@ -91,6 +94,9 @@ class module_6{
                             for(int j = 0; j < names.length; j++){
                                 if(names[j][0] != null){
                                     for(int y = 0; y < search.length(); y++){
+                                        if(names[j][0].length() < search.charAt(y)){
+                                            return true;
+                                        }
                                         if(names[j][0].charAt(y) == search.charAt(y)){
                                             match++;
 
@@ -105,6 +111,8 @@ class module_6{
                                 }
                             }
                             if(match >= search.length()){
+                                System.out.println(match + " match count");
+                                System.out.println(noMatch + " noMatch count");
                                 //System.out.println("match exists");
                                 errorReturn("name is already taken");
                                 mainMenu(true, names);
@@ -254,6 +262,26 @@ class module_6{
             insert = "no notes recieved";
         }
         names[counter - 1][1] = insert;
+
+
+        int priority;
+        System.out.println("What is the priority of this task: \n");
+        System.out.println("[1] High");
+        System.out.println("[2] Medium");
+        System.out.println("[3] Low");
+        System.out.println("[4] No Priority \n");
+        System.out.print("#: ");
+        priority = input.nextInt();
+        if(priority > 4){
+            errorReturn("not an option task priority not set!");
+        } else {
+            priority(names, counter, priority);
+        }
+
+        
+
+
+
         //System.out.print("\n\n" + names[counter - 1][1] + " (names array)");
         
 
@@ -266,6 +294,8 @@ class module_6{
         //names[1][0] = value;
         
     }
+
+
 
     public static void edit(String[][] names){
         Scanner input = new Scanner(System.in);
@@ -360,6 +390,10 @@ class module_6{
 
         System.out.print("\n#: ");
         value = input.nextInt();
+        if(value > 3){
+            errorReturn("not found");
+            mainMenu(false, names);
+        }
 
       
 
@@ -407,6 +441,28 @@ class module_6{
         String[][] table = new String[listCount][4];
         return table;
 
+    }
+
+    public static void priority(String[][] names, int counter, int input){
+        int counterPrint = counter - 1;
+        switch(input){
+            case 1:
+                System.out.println("priority has been set to high on task: " + counterPrint);
+                names[counter - 1][2] = "[1]";
+                break;
+            case 2: 
+                System.out.println("priority has been set to Medium on task: " + counterPrint);
+                names[counter - 1][2] = "[2]";
+                break;
+            case 3: 
+                System.out.println("priority has been set to Low on task: " + counterPrint);
+                names[counter - 1][2] = "[3]";
+                break;
+            case 4:
+                System.out.println("priority has been set to No Priority on task: " + counterPrint);
+                names[counter - 1][2] = "[4]";
+                break;
+        }
     }
 
     public static void main(String arg[]){
