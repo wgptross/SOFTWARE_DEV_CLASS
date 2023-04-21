@@ -44,13 +44,31 @@ class module_6{
         for(int u = 0; u < names.length; u++){
             
             if(names[u][2] != null){
-                priorityArray[counter] = u + " test";
+                priorityArray[counter] = u + "";
                 System.out.println(priorityCounter + " priority counter");
             }
         }
         for(String e: priorityArray){
-            System.out.println(e);
+            System.out.println(e +  " test");
+            if(e != null){
+                notNullPriority++;
+            }
+            if(notNullPriority >= 1){
+                System.out.println(notNullPriority + " check me ");
+                System.out.println("switch case here");
+                System.out.println(e);
+                //System.out.println(Character.getNumericValue(e.charAt(0)));
+                int check = Integer.parseInt(String.valueOf(e));
+                System.out.println(check + " check");
+                System.out.println(priorityArray[check] + " prio check");
+                System.out.println(names[check][2] + " name check");
+
+                if(names[check][2].charAt(1) == '1'){
+                    System.out.println(e);
+                } 
+            } 
         }
+        System.out.println(notNullPriority + " not null priority counter");
 
         for(int k = 0; k < notNull; k++){
             
@@ -117,26 +135,30 @@ class module_6{
                             for(int j = 0; j < names.length; j++){
                                 if(names[j][0] != null){
                                     for(int y = 0; y < search.length(); y++){
-                                        if(names[j][0].length() < search.charAt(y)){
+                                       
+                                        if(search.length() > names[j][0].length()){
+                                            System.out.println("custom return true 1");
                                             return true;
+                                        
                                         }
                                         if(names[j][0].charAt(y) == search.charAt(y)){
                                             match++;
 
-                                            //System.out.println(match + " match found");
+                                            System.out.println(match + " match found");
                                             cont = false;
                                         } else {
                                             noMatch++;
-                                            //System.out.println(noMatch + " no match found");
+                                            System.out.println(noMatch + " no match found");
                                             cont = false;
                                         }
                                     }
                                 }
                             }
                             if(match >= search.length()){
-                                //System.out.println(match + " match count");
-                                //System.out.println(noMatch + " noMatch count");
+                                System.out.println(match + " match count");
+                                System.out.println(noMatch + " noMatch count");
                                 //System.out.println("match exists");
+        
                                 errorReturn("name is already taken");
                                 mainMenu(true, names);
                             }
@@ -210,9 +232,9 @@ class module_6{
 
         //names[counter - 1][0] = value;
 
-        //System.out.println(checkForTitle(names, value));
+        System.out.println(checkForTitle(names, value));
         if(checkForTitle(names, value)){
-            //System.out.println(counter - 1 + " set here");
+            System.out.println(counter - 1 + " set here");
             names[counter - 1][0] = value;
         }
         
