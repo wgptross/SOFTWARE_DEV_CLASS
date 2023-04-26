@@ -38,7 +38,7 @@ class module_6{
 
             int newCount = counter - 1;
             int space = 10;
-            System.out.print(k - k + 1);
+            System.out.print(k + 1);
             System.out.print(" | Title: ");
             System.out.print(names[k + counter][0]);
             printSpace(space - names[k + counter][0].length());
@@ -47,7 +47,32 @@ class module_6{
             System.out.print("\n");
             
         }
-        
+        Scanner view_input = new Scanner(System.in);
+        String viewInputValue;
+        System.out.println("\nHow would you like to view your task(s)?");
+        System.out.println("\nNone (Press enter)");
+        System.out.println("[0] View by priority");
+        System.out.println("[1] Search");
+        System.out.print("\n#:");
+        viewInputValue = view_input.nextLine();
+        switch (viewInputValue) {
+            case "0":
+                System.out.println("view by priority func");
+                break;
+            case "1": 
+                System.out.println("search func");
+                searchArray(counter, names);
+                break; 
+        }
+       
+    }
+
+    public static void searchArray(int counter, String[][] names){
+        Scanner input = new Scanner(System.in);
+        String value;
+        System.out.print("Please enter the name of the task you are searching for: ");
+        value = input.nextLine();
+        System.out.println(value);
     }
 
     public static void printSpace(int count){
