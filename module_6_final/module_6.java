@@ -94,7 +94,20 @@ class module_6{
             searchInt--;
             System.out.println(searchInt + " search");
             
-            
+            for(int search = 0; search < names.length; search++){
+                if(names[search][0] != null){
+
+                    
+                    if(names[search][0].length() != value.length()){
+                        System.out.println("none found 2");
+                        cont = false;
+                
+                    }
+                }
+            }   
+
+
+
             if(names[searchInt][0].length() != value.length()){
                 System.out.println("none found");
                 cont = false;
@@ -124,16 +137,38 @@ class module_6{
                 cont = false;
                 
             }
-            for(int y: searchFound){
-                if(y < searchFound.length + 1){
-                    System.out.println(y + " searchfound");
-                    System.out.println(names[y][0]);
-                }
-
-
+            //for(int y: searchFound){
+                //if(y < searchFound.length + 1){
+                    //System.out.println(y + " searchfound");
+                    //System.out.println(names[y][0]);
+                //}
+            //}
+        }
+        for(int test: searchFound){
+            if(test < searchFound.length + 1){
                 
             }
         }
+        for(int j = 0; j < searchFound.length; j++){
+            
+            if(searchFound[j] < searchFound.length + 1){
+                searchFoundCounter++;
+            }
+        }
+        System.out.println("\n");
+        for(int k = 0; k < searchFoundCounter; k++){
+            if(k < searchFound.length + 1){
+                int space = 10;
+                System.out.print(searchFound[k]);
+                System.out.print(" | Title: ");
+                System.out.print(names[searchFound[k]][0]);
+                printSpace(space - names[searchFound[k]][0].length());
+                System.out.print(" Priority: ");
+                System.out.print(names[searchFound[k]][2] + " | ");
+                System.out.print("\n\n");
+            }
+        }
+        System.out.println("\n");
     }
 
     public static void printSpace(int count){
