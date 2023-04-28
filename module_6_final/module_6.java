@@ -72,7 +72,68 @@ class module_6{
         String value;
         System.out.print("Please enter the name of the task you are searching for: ");
         value = input.nextLine();
-        System.out.println(value);
+        System.out.println(value + " search");
+        boolean cont = true;
+        int searchInt = names.length;
+        int matchCount = 0;
+        int noMatchCount = 0;
+        int[] searchFound = new int[names.length];
+        int searchFoundCounter = 0;
+        for(int set = 0; set < searchFound.length; set++){
+            searchFound[set] = searchFound.length + 1;
+        }
+        for(int j = 0; j < searchFound.length; j++){
+            
+            if(searchFound[j] < searchFound.length + 1){
+                searchFoundCounter++;
+            }
+        }
+        System.out.println(searchFoundCounter + " search found counter");
+        while(cont){
+            
+            searchInt--;
+            System.out.println(searchInt + " search");
+            
+            
+            if(names[searchInt][0].length() != value.length()){
+                System.out.println("none found");
+                cont = false;
+            
+            }
+            
+            
+            if(names[searchInt][0].charAt(0) == value.charAt(0)){
+                System.out.println("name found on counter " + searchInt);
+                cont = false;
+            }
+            
+            for(int i = 0; i < value.length(); i++){
+                if(names[searchInt][0].charAt(i) == value.charAt(i)){
+                    System.out.println("found match");
+                    matchCount++;
+                } else {
+                    System.out.println("no match found");
+                    noMatchCount++;
+                }
+            }
+            if(matchCount > 2){
+               searchFound[searchFoundCounter] = searchInt; 
+            }
+            if(searchInt <= 0){
+                System.out.println("exiting loop");
+                cont = false;
+                
+            }
+            for(int y: searchFound){
+                if(y < searchFound.length + 1){
+                    System.out.println(y + " searchfound");
+                    System.out.println(names[y][0]);
+                }
+
+
+                
+            }
+        }
     }
 
     public static void printSpace(int count){
