@@ -53,16 +53,21 @@ class module_6{
         System.out.println("\nNone (Press enter)");
         System.out.println("[0] View by priority");
         System.out.println("[1] Search");
+        System.out.println("[2] View");
         System.out.print("\n#:");
         viewInputValue = view_input.nextLine();
         switch (viewInputValue) {
             case "0":
                 System.out.println("view by priority func");
+                prioritySearch(names, counter);
                 break;
             case "1": 
                 System.out.println("search func");
                 searchArray(counter, names);
-                break; 
+                break;
+            case "2": 
+                System.out.println("view");
+                break;
         }
        
     }
@@ -171,11 +176,53 @@ class module_6{
         System.out.println("\n");
     }
 
+
+
     public static void printSpace(int count){
         for(int i = 0; i < count; i++){
             System.out.print(" ");
         }
         System.out.print(" | ");
+    }
+
+    public static void prioritySearch(String[][] names, int counter){
+        int notNull = 0;
+        for(int i = 0; i < names.length; i++){
+            if(names[i][0] != null){
+                notNull++;
+            }
+        }
+        Scanner input = new Scanner(System.in);
+        String value;
+        System.out.println("\nWhat priority would you like to view?");
+        System.out.println("\nNone (Press enter)");
+        System.out.println("[1] High");
+        System.out.println("[2] Medium");
+        System.out.println("[3] Low");
+        System.out.print("\n#:");
+        value = input.nextLine();
+        switch (value) {
+            case "1":
+                for(int one = 0; one < notNull; one++){
+                    int newCount = counter - 1;
+                    int space = 10;
+                    if(names[one + counter][2].charAt(1) == '1'){
+                        System.out.print(one + 1);
+                        System.out.print(" | Title: ");
+                        System.out.print(names[one + counter][0]);
+                        printSpace(space - names[one + counter][0].length());
+                        System.out.print(" Priority: ");
+                        System.out.print(names[one + counter][2] + " | ");
+                        System.out.print("\n");
+                    }
+                    //System.out.println(names[one + counter][2] + " | ");
+                }
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+        }
     }
 
     public static boolean checkForTitle(String[][] names, String search){
