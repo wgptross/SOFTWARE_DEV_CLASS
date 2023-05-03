@@ -39,6 +39,7 @@ class module_6{
             int newCount = counter - 1;
             int space = 10;
             System.out.print(k + 1);
+            System.out.print(" | ID: " + names[k + counter][3]);
             System.out.print(" | Title: ");
             System.out.print(names[k + counter][0]);
             printSpace(space - names[k + counter][0].length());
@@ -67,9 +68,27 @@ class module_6{
                 break;
             case "2": 
                 System.out.println("view");
+                System.out.println(notNull);
+                viewId(names, counter, notNull);
                 break;
         }
        
+    }
+
+    public static void viewId(String[][] names, int counter, int notNull){
+        Scanner input = new Scanner(System.in);
+        int value = 0;
+        System.out.print("Enter the ID of the task you would like to view: ");
+        value = input.nextInt();
+        System.out.println(value);
+        for(int i = 0; i < names.length; i++){
+            
+            if(i == value){
+                System.out.println(names[i][0] + " name");
+                System.out.println(names[i][1] + " notes");
+                System.out.println(names[i][2] + " prio");
+            }
+        }
     }
 
     public static void searchArray(int counter, String[][] names){
@@ -356,6 +375,7 @@ class module_6{
         if(checkForTitle(names, value)){
             System.out.println(counter - 1 + " set here");
             names[counter - 1][0] = value;
+            names[counter - 1][3] = counter - 1 + "";
         }
         
        
@@ -466,7 +486,7 @@ class module_6{
         Scanner input = new Scanner(System.in);
         int counter = 0;
         int notNull = 0;
-        String value;
+        int value = 0;
         for(int i = 0; i < names.length; i++){
             if(names[i][0] != null){
                 notNull++;
@@ -482,50 +502,63 @@ class module_6{
             int newCount = counter - 1;
             int space = 10;
             System.out.print(k + 1);
+            System.out.print(" | ID: " + names[k + counter][3]);
             System.out.print(" | Title: ");
             System.out.print(names[k + counter][0]);
             printSpace(space - names[k + counter][0].length());
+            System.out.print("\n");
             
         }
-        System.out.print("Enter the name of the task you would like to edit: ");
-        value = input.nextLine();
-
-        int validCount = 0;
-        int invalidCount = 0;
-
-        for(int j = 0; j < notNull; j++){
-            String compare = names[counter - j][0];
-            
-            if(value.length() == compare.length()){
-                
-                for(int l = 0; l < compare.length(); l++){
-                    if(compare.charAt(l) == value.charAt(l)){
-                        
-                        validCount++;
-                    } else {
-                        
-                        invalidCount++;
-                    }
-                }
-                //System.out.print(validCount);
-                //System.out.print(invalidCount);
-                if(validCount >= compare.length()){
-                    System.out.print(j + counter);
-                    System.out.print("this name is valid and can be edited");
-                    editId(j + counter, names);
-                } else {
-                    errorReturn("This name does not exist");
-                }
-            } else {
-                errorReturn("This name does not exist");
+        System.out.print("Enter the ID of the task you would like to edit: ");
+        value = input.nextInt();
+        for(int id = 0; id < names.length; id++){
+            if(id == value){
+                editId(id, names);
             }
         }
 
     }
     public static void editId(int editid, String[][] names){
-        System.out.println(names[editid][0]);
-        //System.out.println(names[editid][1]);
+        String value;
+        Scanner input = new Scanner(System.in);
+        System.out.println("\nWhat would you like to edit?");
+        System.out.println("None (Press enter)");
+        System.out.println("[1] name");
+        System.out.println("[2] notes");
+        System.out.println("[3] priority");
+        System.out.print("\n#:");
+        value = input.nextLine();
+        switch(value){
+            case "1":
+                System.out.println("name");
+                editPrint(names, editid, 1);
+                break;
+            case "2":
+                System.out.println("notes");
+                editPrint(names, editid, 2);
+                break;
+            case "3":
+                System.out.println("prio");
+                editPrint(names, editid, 3);
+                break;
+        }
     }
+
+    public static void editPrint(String[][] names, int editid, int type){
+        //System.out.println(names[editid][type - 1]);
+
+        switch(type){
+            case 1:
+                System.out.println("Current: \n" + names[editid][type - 1]);
+                break;
+            case 2:
+                System.out.println("Current: \n" + names[editid][type - 1]);
+                break;
+            case 3: 
+                System.out.println("Current: \n" + names[editid][type - 1]);
+        }
+    }
+
     public static void execute(int number, String[][] names){
         switch (number){
             case 0:
