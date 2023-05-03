@@ -203,24 +203,13 @@ class module_6{
         value = input.nextLine();
         switch (value) {
             case "1":
-                for(int one = 0; one < notNull; one++){
-                    int newCount = counter - 1;
-                    int space = 10;
-                    if(names[one + counter][2].charAt(1) == '1'){
-                        System.out.print(one + 1);
-                        System.out.print(" | Title: ");
-                        System.out.print(names[one + counter][0]);
-                        printSpace(space - names[one + counter][0].length());
-                        System.out.print(" Priority: ");
-                        System.out.print(names[one + counter][2] + " | ");
-                        System.out.print("\n");
-                    }
-                    //System.out.println(names[one + counter][2] + " | ");
-                }
+                prioritySearchPrinter(names, notNull, counter, '1');
                 break;
             case "2":
+                prioritySearchPrinter(names, notNull, counter, '2');
                 break;
             case "3":
+                prioritySearchPrinter(names, notNull, counter, '3');
                 break;
         }
     }
@@ -617,6 +606,23 @@ class module_6{
         String[][] table = new String[listCount][4];
         return table;
 
+    }
+
+    public static void prioritySearchPrinter(String[][] names, int notNull, int counter, char prioNumber){
+        for(int one = 0; one < notNull; one++){
+            int newCount = counter - 1;
+            int space = 10;
+            if(names[one + counter][2].charAt(1) == prioNumber){
+                System.out.print(one + 1);
+                System.out.print(" | Title: ");
+                System.out.print(names[one + counter][0]);
+                printSpace(space - names[one + counter][0].length());
+                System.out.print(" Priority: ");
+                System.out.print(names[one + counter][2] + " | ");
+                System.out.print("\n");
+            }
+                    //System.out.println(names[one + counter][2] + " | ");
+        }
     }
 
     public static void priority(String[][] names, int counter, int input){
