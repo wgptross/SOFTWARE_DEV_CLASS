@@ -227,7 +227,7 @@ class module_6{
         }
     }
 
-    public static boolean checkForTitle(String[][] names, String search, int exclude){
+    public static boolean checkForTitle(String[][] names, String search){
         int counter = 0;
         int possibleCounter = 0;
         int notNull = 0;
