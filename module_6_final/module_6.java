@@ -81,14 +81,8 @@ class module_6{
         System.out.print("Enter the ID of the task you would like to view: ");
         value = input.nextInt();
         System.out.println(value);
-        for(int i = 0; i < names.length; i++){
-            
-            if(i == value){
-                System.out.println(names[i][0] + " name");
-                System.out.println(names[i][1] + " notes");
-                System.out.println(names[i][2] + " prio");
-            }
-        }
+        editId(value, names);
+        
     }
 
     public static void searchArray(int counter, String[][] names){
@@ -233,7 +227,7 @@ class module_6{
         }
     }
 
-    public static boolean checkForTitle(String[][] names, String search){
+    public static boolean checkForTitle(String[][] names, String search, int exclude){
         int counter = 0;
         int possibleCounter = 0;
         int notNull = 0;
@@ -549,7 +543,9 @@ class module_6{
 
         switch(type){
             case 1:
+
                 System.out.println("Current: \n" + names[editid][type - 1]);
+                
                 break;
             case 2:
                 System.out.println("Current: \n" + names[editid][type - 1]);
@@ -557,6 +553,22 @@ class module_6{
             case 3: 
                 System.out.println("Current: \n" + names[editid][type - 1]);
         }
+    }
+
+    public static void nameChange(String[][] names, int editId){
+        String newName;
+        Scanner input = new Scanner(System.in);
+        boolean cont = true
+        while(cont){
+            System.out.println("What would you like to rename this task?: ");
+            newName = input.nextLine();
+            if(newName == ""){
+                errorReturn("Invalid name");
+            }
+        }
+
+              
+
     }
 
     public static void execute(int number, String[][] names){
