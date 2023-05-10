@@ -560,6 +560,7 @@ class module_6{
         Scanner input = new Scanner(System.in);
         boolean cont = true;
         while(cont){
+            System.out.println(editId);
             System.out.println(names[editId][0]);
             System.out.print("What would you like to rename this task?: ");
             newName = input.nextLine();
@@ -586,7 +587,7 @@ class module_6{
                 errorReturn("Invalid name");
                 nameChange(names, editId);
             }
-
+            System.out.println(editId);
             if(checkForTitleRename(names, newName, editId) == false){
                 errorReturn("Name already taken");
                 cont = false;
