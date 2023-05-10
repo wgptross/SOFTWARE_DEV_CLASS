@@ -12,10 +12,10 @@ class sort_test {
         for(int j = 0; j < names.length; j++){
             System.out.println(names[j][0]);
         }
-        System.out.print(checkForTitle(names, "thee", 2));
+        System.out.print(checkForTitleRename(names, "thee", 2));
         
     }
-    public static boolean checkForTitle(String[][] names, String search, int exclude){
+    public static boolean checkForTitleRename(String[][] names, String search, int exclude){
         boolean cont = true;
         int whileCount = 0;
         String[][] searchArray = new String[1][1];

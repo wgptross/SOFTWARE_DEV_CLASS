@@ -545,7 +545,7 @@ class module_6{
             case 1:
 
                 System.out.println("Current: \n" + names[editid][type - 1]);
-                
+                nameChange(names, editid);
                 break;
             case 2:
                 System.out.println("Current: \n" + names[editid][type - 1]);
@@ -558,17 +558,83 @@ class module_6{
     public static void nameChange(String[][] names, int editId){
         String newName;
         Scanner input = new Scanner(System.in);
-        boolean cont = true
+        boolean cont = true;
         while(cont){
-            System.out.println("What would you like to rename this task?: ");
+            System.out.println(names[editId][0]);
+            System.out.print("What would you like to rename this task?: ");
             newName = input.nextLine();
             if(newName == ""){
                 errorReturn("Invalid name");
+                nameChange(names, editId);
+            }
+            if(newName.length() >= 16){
+                errorReturn("Name is too long");
+                nameChange(names, editId);
+
+            }
+            if(newName.charAt(0) == '.'){
+                errorReturn("Invalid name");
+                nameChange(names, editId);
+            }
+            int emptyCount = 0;
+            for(int i = 0; i < newName.length(); i++){
+                if(newName.charAt(i) == ' '){
+                    emptyCount++;
+                }
+            }
+            if(emptyCount > 0){
+                errorReturn("Invalid name");
+                nameChange(names, editId);
+            }
+
+            if(checkForTitleRename(names, newName, editId) == false){
+                errorReturn("Name already taken");
+                cont = false;
+                nameChange(names, editId);
+            } else {
+                names[editId][0] = newName;
             }
         }
 
               
 
+    }
+
+    public static boolean checkForTitleRename(String[][] names, String search, int exclude){
+        boolean cont = true;
+        int whileCount = 0;
+        String[][] searchArray = new String[1][1];
+        searchArray[0][0] = search;
+        boolean found = false;
+        int foundCount = 0;
+        int notFoundCount = 0;
+        for(int i = 0; i < names.length; i++){
+            if(names[i][0] != null){
+                for(int k = 0; k < searchArray[0][0].length(); k++){
+                    System.out.println(i);
+                    if(i == exclude){
+                        i += 1;
+                    }
+                    if(names[i - 1][0].charAt(k) == searchArray[0][0].charAt(k)){
+                        System.out.println("char found");
+                        foundCount++;
+                    } else {
+                        System.out.println(" no char found");
+                        notFoundCount++;
+                    }
+                    if(foundCount >= searchArray[0][0].length()){
+                        System.out.println(foundCount + "\n" + notFoundCount);
+                        System.out.println("return false here");
+                        return false;
+                    } else {
+                        System.out.println(foundCount + "\n" + notFoundCount);
+                        System.out.println("return true here");
+                        return true;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public static void execute(int number, String[][] names){
